@@ -1,0 +1,14 @@
+[package]
+name = "automated_llama_text_generator"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+eframe = "0.24.0"
+egui = "0.24.0"
+#reqwest = { version = "0.12", features = ["blocking", "json"] }
+serde = { version = "1.0", features = ["derive"] }
+#serde_json = "1.0"
+anyhow = "1.0.95"
+clipboard = "0.5"
+serde_yaml = "0.9.34+deprecated"
