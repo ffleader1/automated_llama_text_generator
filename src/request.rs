@@ -25,6 +25,9 @@ pub fn gen_request_content(current_prompt: String, previous_turn: String, prefer
         }));
     }
 
+    chat_gpt_prompt.push_str("Avoid if possible putting all 4 sub rating to be the same thing.\
+    That does not sound like a subjective judgement\n");
+
     chat_gpt_prompt.push_str(match preference_length {
         0 => "\nFinally. I would like a simple answer, so I strongly prefer no more than 2 points \
         per category, as the absolute max should be 3. Also, if you can, please put 1\n",

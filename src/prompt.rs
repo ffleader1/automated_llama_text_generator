@@ -1,31 +1,29 @@
 
-const TEMPLATE: &str = "Your mission is to produce a yaml format answer that is in the below yaml format \
+const TEMPLATE: &str = "Your mission is to produce a markdown copy ready format answer that is in the below markdown format \
+I repeat that it must be copy ready, as there is a copy button for me to cpy the result. Raw markdown maybe?
 that rates a llm prompt on 4 category Experience, Knowledge, Ambiguity and Complexity. Each category \
-has 2 attributes: Note and Score. Note is an array of string, contain points what you want to talk \
-about the category. Rating conclude what should the category be ranked as. It can be one of: Easy, \
+has 2 type of attributes. First type is an array of string, contain points what you want to talk \
+about the category. And there is the second type, Rating, to conclude what should the category be ranked as. It can be one of: Easy, \
 Easy - Medium, Medium, Medium - Hard, Hard and Very Hard.\
-There should be the Overall rating also, which strictly falls into Easy, Medium and Hard.\
+There should be the Overall rating also, which strictly falls into Difficulty of Easy, Medium or Hard.\
 Sample response (do not include the backtick in the answer.
 ```
 # Experience
-  Note:
-    - Need experience about optimizing Rust calculation
-  Rating: Medium
+ - Need experience about optimizing Rust calculation
+ - Rating: Medium
 Knowledge
-  Note:
-    - Both Math knowledge and Rust knowledge is required
-  Rating: Medium
+ - Both Math knowledge and Rust knowledge is required
+ - Rating: Medium
 Ambiguity
-  Note:
-    - Prompt is clear on the point, overall goal, and even included what to avoid
-    - Prompt did not go into details what step to take
-    - Provided code is long
-  Rating: Medium
+ - Prompt is clear on the point, overall goal, and even included what to avoid
+ - Prompt did not go into details what step to take
+ - Provided code is long
+ - Rating: Medium
 Complexity
-  Note:
-    - Have to use non standard library or some high level optimization
-  Rating: Medium - Hard
-Overall: Medium
+ - Have to use non standard library or some high level optimization
+ - Rating: Medium - Hard
+Overall:
+  Difficulty Medium
 ```
 You will be provided with the prompt itself, and, optionally, the previous turn answer that lead to
 the prompt.

@@ -73,27 +73,28 @@ Note that the matrix input must be in JSON format, and it must start with the st
 const EXAMPLE1_PROMPT: &str = r#"I got this err: Connection error: Resource temporarily unavailable (os error 35)"#;
 
 const EXAMPLE1_SAMPLE_RESULT: &str = r#"
-Experience
-  Note:
-    - Need experience about debugging Telnet in Rust
-  Rating: Medium - Hard
-Knowledge
-  Note:
-    - Rust Telnet knowledge is not common
-    - The information provided is only the log
-    - The model has to debug telnet in conjunction with curl http
-  Rating: Hard
-Ambiguity
-  Note:
-    - Prompt is clear about the error and the expectation
-    - it does not provide any hint to the solution or at least what could be wrong
-  Rating: Medium
-Complexity
-  Note:
-    - Unclear where this problem is, thus the solution is hard to determine
-    - Coule be related to the provided Telnet implementation, but maybe changing code in other part could also fix it
-  Rating: Hard
-Overall: Hard
+# Experience
+- Need experience about debugging Telnet in Rust
+- Rating: Medium - Hard
+
+# Knowledge
+- Rust Telnet knowledge is not common
+- The information provided is only the log
+- The model has to debug telnet in conjunction with curl http
+- Rating: Hard
+
+# Ambiguity
+- Prompt is clear about the error and the expectation
+- it does not provide any hint to the solution or at least what could be wrong
+- Rating: Medium
+
+# Complexity
+- Unclear where this problem is, thus the solution is hard to determine
+- Coule be related to the provided Telnet implementation, but maybe changing code in other part could also fix it
+- Rating: Hard
+
+# Overall
+ Difficulty Hard
 "#;
 
 const EXAMPLE2_PREVIOUS_ANSWER: &str = "(None)";
@@ -314,24 +315,26 @@ fn main() {
 "#;
 
 const EXAMPLE2_SAMPLE_RESULT: &str = r#"
-Experience
-  Note:
-    - Need basic Rust experience to understand Rust code
-  Rating: Easy - Medium
-Knowledge
-  Note:
-    - Rust basic knowledge to understand the code
-  Rating: Easy - Medium
-Ambiguity
-  Note:
-    - Prompt is clear about the code, the task and the expectation
-  Rating: Easy
-Complexity
-  Note:
-    - Just adding comments to the code, no need to code any line
-    - Also need to find an OS-lacking feature
-  Rating: Easy - Medium
-Overall: Easy
+# Experience
+- Need basic Rust experience to understand Rust code
+- Rating: Easy - Medium
+
+# Knowledge
+- Rust basic knowledge to understand the code
+- Rating: Easy - Medium
+
+# Ambiguity
+- Prompt is clear about the code, the task and the expectation
+- Rating: Easy
+
+# Complexity
+- Just adding comments to the code, no need to code any line
+- Also need to find an OS-lacking feature
+- Rating: Easy - Medium
+
+# Overall
+ Difficulty Easy
+
 "#;
 
 pub fn generate_sample() -> String {
@@ -339,13 +342,13 @@ pub fn generate_sample() -> String {
     Example 1:\n\
     Previous Answer:{}\n\
     Current Prompt:{}\n\
-    Expected Yaml {}\n---\n", EXAMPLE1_PREVIOUS_ANSWER, EXAMPLE1_PROMPT, EXAMPLE1_SAMPLE_RESULT);
+    Expected Markdown {}\n---\n", EXAMPLE1_PREVIOUS_ANSWER, EXAMPLE1_PROMPT, EXAMPLE1_SAMPLE_RESULT);
 
     spm.add(
         &format!("\n---\
     Example 2:\n\
     Previous Answer:{}\n\
     Current Prompt:{}\n\
-    Expected Yaml {}\n---\n", EXAMPLE2_PREVIOUS_ANSWER, EXAMPLE2_PROMPT, EXAMPLE2_SAMPLE_RESULT)
+    Expected Markdown {}\n---\n", EXAMPLE2_PREVIOUS_ANSWER, EXAMPLE2_PROMPT, EXAMPLE2_SAMPLE_RESULT)
     )
 }
