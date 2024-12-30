@@ -223,11 +223,12 @@ impl eframe::App for GuiApp {
                                 });
                         });
 
-                        if ui.button("Copy Prompt To Clipboard").clicked() {
+                        if ui.button("Copy Full Prompt").clicked() {
 
                             let req_content = request::gen_request_content(
                                 self.input_fields[0].text.clone(), self.input_fields[1].text.clone(),
                                 self.selected_difficulty, self.selected_prompt_length,
+                                false,
                             );
                             match req_content {
                                 Ok(content) => {
@@ -242,6 +243,29 @@ impl eframe::App for GuiApp {
                                 }
                             }
                         }
+
+                        if ui.button("Copy Shorten Prompt").clicked() {
+
+                            let req_content = request::gen_request_content(
+                                self.input_fields[0].text.clone(), self.input_fields[1].text.clone(),
+                                self.selected_difficulty, self.selected_prompt_length,
+                                true,
+                            );
+                            match req_content {
+                                Ok(content) => {
+                                    let mut ctx: ClipboardContext = ClipboardProvider::new().unwrap();
+
+
+                                    ctx.set_contents(content.to_owned()).unwrap();
+
+                                }
+                                Err(e) => {
+                                    println!("Error: {:?}", e);
+                                }
+                            }
+                        }
+
+
                         ui.add_space(16.0);
                         let field = &mut self.input_fields[2];
                         ui.horizontal(|ui| {

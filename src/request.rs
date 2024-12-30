@@ -4,11 +4,16 @@ use crate::prompt;
 use crate::raw_example;
 
 pub fn gen_request_content(current_prompt: String, previous_turn: String, preference_difficulty: usize,
-                           preference_length: usize) -> Result<String> {
+                           preference_length: usize, continuous: bool) -> Result<String> {
     if current_prompt.is_empty() {
         return Err(anyhow::anyhow!("Prompt cannot be empty."));
     }
-    let mut chat_gpt_prompt = prompt::generate_chat_gpt_prompt(current_prompt,previous_turn);
+    let mut chat_gpt_prompt = if !continuous {
+        prompt::generate_chat_gpt_prompt(current_prompt, previous_turn)
+    }else{
+        prompt::generate_chat_gpt_prompt_continuous(current_prompt, previous_turn)
+    };
+
     chat_gpt_prompt.push_str(&raw_example::generate_sample());
 
     if preference_difficulty > 0 {

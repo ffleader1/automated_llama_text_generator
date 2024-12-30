@@ -1,6 +1,6 @@
 
-const TEMPLATE: &str = "Your mission is to produce a markdown copy ready format answer that is in the below markdown format \
-I repeat that it must be copy ready, as there is a copy button for me to cpy the result. Raw markdown maybe?
+const TEMPLATE_ORIGINAL: &str = "Your mission is to produce a markdown copy ready format answer that is in the below markdown format \
+I repeat that it must be raw markdown, copy ready, as there is a copy button for me to copy the result. Raw markdown.
 that rates a llm prompt on 4 category Experience, Knowledge, Ambiguity and Complexity. Each category \
 has 2 type of attributes. First type is an array of string, contain points what you want to talk \
 about the category. And there is the second type, Rating, to conclude what should the category be ranked as. It can be one of: Easy, \
@@ -62,13 +62,34 @@ Complexity of solution: finding a solution requires solving several non-trivial 
 Some example just for you
 ";
 
+const TEMPLATE_NEXT : &str = "Do the same thing\
+---
+The prompt:
+{CURRENT_PROMPT}
+
+The previous turn answer:
+{PREVIOUS_TURN_ANSWER}
+---
+";
+
 pub fn generate_chat_gpt_prompt(current_prompt: String, previous_turn: String) -> String {
     let prev_turn_str = if previous_turn.is_empty() {
         "(none)".to_string()
     }else{
         previous_turn
     };
-    TEMPLATE
+    TEMPLATE_ORIGINAL
+        .replace("{CURRENT_PROMPT}", &current_prompt)
+        .replace("{PREVIOUS_TURN_ANSWER}", &prev_turn_str)
+}
+
+pub fn generate_chat_gpt_prompt_continuous(current_prompt: String, previous_turn: String) -> String {
+    let prev_turn_str = if previous_turn.is_empty() {
+        "(none)".to_string()
+    }else{
+        previous_turn
+    };
+    TEMPLATE_NEXT
         .replace("{CURRENT_PROMPT}", &current_prompt)
         .replace("{PREVIOUS_TURN_ANSWER}", &prev_turn_str)
 }
