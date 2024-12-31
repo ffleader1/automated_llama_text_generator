@@ -62,7 +62,7 @@ Complexity of solution: finding a solution requires solving several non-trivial 
 Some example just for you
 ";
 
-const TEMPLATE_NEXT : &str = "Do the same thing\
+const TEMPLATE_NEXT : &str = "Do the same thing\n\
 ---
 The prompt:
 {CURRENT_PROMPT}
